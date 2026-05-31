@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmic Shifts 2026 | Jupiter Transit in Cancer</title>
     <style>
-        /* --- Dark Cosmic Design Tokens --- */
         :root {
             --bg-space: #05050f;
             --bg-nebula: radial-gradient(circle at 50% 50%, #120a2b 0%, #05050f 100%);
@@ -18,398 +17,66 @@
             --glow: 0 0 20px rgba(147, 51, 234, 0.4);
             --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background: var(--bg-space);
-            background-image: var(--bg-nebula);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* --- Starry Background Effect --- */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
-            background-size: 550px 550px, 350px 350px;
-            background-position: 0 0, 40px 60px;
-            opacity: 0.4;
-            z-index: 0;
-        }
-
-        /* --- Layout & Typography --- */
-        header {
-            position: relative;
-            text-align: center;
-            padding: 5rem 1rem 3rem;
-            z-index: 10;
-        }
-
-        .transit-badge {
-            display: inline-block;
-            background: linear-gradient(90deg, rgba(251, 191, 36, 0.2), rgba(56, 189, 248, 0.2));
-            border: 1px solid var(--accent-cancer);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent-cancer);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, #a78bfa, #38bdf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-
-        .subtitle {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            font-size: 1.1rem;
-        }
-
-        /* --- Custom Interactive Dropdown --- */
-        .controls-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 4rem;
-            z-index: 20;
-        }
-
-        .select-wrapper {
-            position: relative;
-            width: 320px;
-        }
-
-        select {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            background: rgba(15, 15, 35, 0.85);
-            border: 2px solid var(--card-border);
-            border-radius: 12px;
-            color: #fff;
-            font-size: 1.1rem;
-            cursor: pointer;
-            appearance: none;
-            outline: none;
-            transition: var(--transition-smooth);
-            box-shadow: var(--glow);
-        }
-
-        select:focus {
-            border-color: var(--accent-cancer);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
-        }
-
-        .select-wrapper::after {
-            content: '▼';
-            font-size: 0.8rem;
-            color: var(--accent-cancer);
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-
-        /* --- Predictions Grid & Cards --- */
-        .predictions-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem 5rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .sign-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: var(--transition-smooth);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Micro-interactions & Animations */
-        .sign-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-jupiter), var(--accent-cancer));
-            opacity: 0;
-            transition: var(--transition-smooth);
-        }
-
-        .sign-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(56, 189, 248, 0.6);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(147, 51, 234, 0.2);
-        }
-
-        .sign-card:hover::before {
-            opacity: 1;
-        }
-
-        /* Dynamic classes for filtering animations */
-        .sign-card.hidden {
-            opacity: 0;
-            transform: translateY(20px) scale(0.95);
-            pointer-events: none;
-            position: absolute;
-            width: 0;
-            height: 0;
-            padding: 0;
-            margin: 0;
-            border: none;
-            overflow: hidden;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-        }
-
-        .sign-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .sign-element {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.05);
-        }
-
-        /* Element specific styling */
-        .element-fire { color: #f87171; background: rgba(248, 113, 113, 0.1); }
-        .element-earth { color: #34d399; background: rgba(52, 211, 153, 0.1); }
-        .element-air { color: #60a5fa; background: rgba(96, 165, 250, 0.1); }
-        .element-water { color: #22d3ee; background: rgba(34, 211, 238, 0.1); }
-
-        .transit-focus {
-            font-size: 0.9rem;
-            color: var(--accent-jupiter);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .prediction-text {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        /* --- Responsive Queries --- */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            header { padding: 3rem 1rem 2rem; }
-            .predictions-container {
-                grid-template-columns: 1fr;
-                padding: 0 1rem 3rem;
-            }
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg-space); background-image: var(--bg-nebula); color: var(--text-primary); min-height: 100vh; line-height: 1.6; }
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px); background-size: 550px 550px; opacity: 0.4; z-index: 0; }
+        header { position: relative; text-align: center; padding: 5rem 1rem 3rem; z-index: 10; }
+        h1 { font-size: 3rem; background: linear-gradient(to right, #fff, #a78bfa, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+        .controls-container { display: flex; justify-content: center; margin-bottom: 4rem; z-index: 20; position: relative; }
+        select { width: 320px; padding: 1rem; background: rgba(15, 15, 35, 0.85); border: 2px solid var(--card-border); border-radius: 12px; color: #fff; cursor: pointer; }
+        .predictions-container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; position: relative; z-index: 10; }
+        .sign-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 2.5rem 2rem; backdrop-filter: blur(12px); transition: var(--transition-smooth); }
+        .sign-card.hidden { display: none; }
+        .sign-name { font-size: 1.5rem; font-weight: 700; color: #fff; display: block; margin-bottom: 1rem; }
+        .transit-focus { color: var(--accent-jupiter); font-weight: 600; text-transform: uppercase; margin-bottom: 1rem; font-size: 0.9rem; }
+        .prediction-text { color: var(--text-secondary); }
     </style>
 </head>
 <body>
-
     <div class="stars"></div>
-
     <header>
-        <div class="transit-badge">Cosmic Event • June 2026</div>
-        <h1>Jupiter Transit In Cancer</h1>
-        <p class="subtitle">The Planet of Luck and Expansion enters its sign of exaltation. Discover how this major 12-month alignment influences your Moon Sign.</p>
+        <h1>Jupiter Transit In Cancer 2026</h1>
+        <p>Select your Moon Sign (Rashi) to see your 12-month prediction.</p>
     </header>
 
     <div class="controls-container">
-        <div class="select-wrapper">
-            <select id="signFilter" onchange="filterSigns()">
-                <option value="all">All 12 Moon Signs (राशि)</option>
-                <option value="aries">Aries (Mesh)</option>
-                <option value="taurus">Taurus (Vrishabha)</option>
-                <option value="gemini">Gemini (Mithun)</option>
-                <option value="cancer">Cancer (Kark)</option>
-                <option value="leo">Leo (Simha)</option>
-                <option value="virgo">Virgo (Kanya)</option>
-                <option value="libra">Libra (Tula)</option>
-                <option value="scorpio">Scorpio (Vrishchik)</option>
-                <option value="sagittarius">Sagittarius (Dhanu)</option>
-                <option value="capricorn">Capricorn (Makar)</option>
-                <option value="aquarius">Aquarius (Kumbha)</option>
-                <option value="pisces">Pisces (Meen)</option>
-            </select>
-        </div>
+        <select id="signFilter" onchange="filterSigns()">
+            <option value="all">All 12 Moon Signs (राशि)</option>
+            <option value="aries">Aries (Mesh)</option>
+            <option value="taurus">Taurus (Vrishabha)</option>
+            <option value="gemini">Gemini (Mithun)</option>
+            <option value="cancer">Cancer (Kark)</option>
+            <option value="leo">Leo (Simha)</option>
+            <option value="virgo">Virgo (Kanya)</option>
+            <option value="libra">Libra (Tula)</option>
+            <option value="scorpio">Scorpio (Vrishchik)</option>
+            <option value="sagittarius">Sagittarius (Dhanu)</option>
+            <option value="capricorn">Capricorn (Makar)</option>
+            <option value="aquarius">Aquarius (Kumbha)</option>
+            <option value="pisces">Pisces (Meen)</option>
+        </select>
     </div>
 
-    <main class="predictions-container" id="predictionsGrid">
-        <div class="sign-card" data-sign="aries">
-            <div class="card-header">
-                <span class="sign-name">Aries (Mesh)</span>
-                <span class="sign-element element-fire">Fire</span>
-            </div>
-            <div class="transit-focus">4th House: Home & Inner Peace</div>
-            <p class="prediction-text">Jupiter brings expansive joy to your domestic sphere. This is a golden period for real estate investments, upgrading your living space, or healing long-standing family dynamics. Emotional security hits an all-time high.</p>
-        </div>
-
-        <div class="sign-card" data-sign="taurus">
-            <div class="card-header">
-                <span class="sign-name">Taurus (Vrishabha)</span>
-                <span class="sign-element element-earth">Earth</span>
-            </div>
-            <div class="transit-focus">3rd House: Communication & Travel</div>
-            <p class="prediction-text">Your intellectual pursuits take flight. Expect massive growth in skill acquisition, local networking, and writing ventures. Short trips bring profound inspiration, and relationships with siblings or neighbors blossom beautifully.</p>
-        </div>
-
-        <div class="sign-card" data-sign="gemini">
-            <div class="card-header">
-                <span class="sign-name">Gemini (Mithun)</span>
-                <span class="sign-element element-air">Air</span>
-            </div>
-            <div class="transit-focus">2nd House: Wealth & Values</div>
-            <p class="prediction-text">As Jupiter leaves your sign, it enters your financial sector, amplifying your earning potential. New revenue streams materialize. Focus on stabilizing your resources, but guard against a matching urge to overspend luxuriously.</p>
-        </div>
-
-        <div class="sign-card" data-sign="cancer">
-            <div class="card-header">
-                <span class="sign-name">Cancer (Kark)</span>
-                <span class="sign-element element-water">Water</span>
-            </div>
-            <div class="transit-focus">1st House: Identity & New Beginnings</div>
-            <p class="prediction-text">The cosmic jackpot belongs to you. With Jupiter exalted in your 1st house, your confidence, physical vitality, and personal charisma reach a 12-year peak. Trust your intuition; the world is ready to say 'yes' to your grandest ambitions.</p>
-        </div>
-
-        <div class="sign-card" data-sign="leo">
-            <div class="card-header">
-                <span class="sign-name">Leo (Simha)</span>
-                <span class="sign-element element-fire">Fire</span>
-            </div>
-            <div class="transit-focus">12th House: Spiritual Awakening</div>
-            <p class="prediction-text">Jupiter acts as a divine guardian angel in your subconscious realm. This transit accelerates deep psychological healing, vivid dream states, and spiritual growth. Solitude becomes a source of immense creative and intuitive power.</p>
-        </div>
-
-        <div class="sign-card" data-sign="virgo">
-            <div class="card-header">
-                <span class="sign-name">Virgo (Kanya)</span>
-                <span class="sign-element element-earth">Earth</span>
-            </div>
-            <div class="transit-focus">11th House: Networks & Aspirations</div>
-            <p class="prediction-text">Your social circle undergoes a magnificent expansion. High-status allies enter your life to aid your long-term visions. Collaborative projects, community building, and humanitarian goals yield exceptional rewards this year.</p>
-        </div>
-
-        <div class="sign-card" data-sign="libra">
-            <div class="card-header">
-                <span class="sign-name">Libra (Tula)</span>
-                <span class="sign-element element-air">Air</span>
-            </div>
-            <div class="transit-focus">10th House: Career & Public Status</div>
-            <p class="prediction-text">Prepare for professional elevation. Jupiter casts its benevolent gaze on your career house, bringing long-awaited recognition, promotions, or a successful shift in your life's true calling. Authority figures lean heavily in your favor.</p>
-        </div>
-
-        <div class="sign-card" data-sign="scorpio">
-            <div class="card-header">
-                <span class="sign-name">Scorpio (Vrishchik)</span>
-                <span class="sign-element element-water">Water</span>
-            </div>
-            <div class="transit-focus">9th House: Higher Wisdom & Travel</div>
-            <p class="prediction-text">Your horizons widen dramatically. Opportunities for long-distance international travel, higher education, or publishing emerge. Your philosophical perspective shifts toward profound optimism, inviting synchronicity into your life.</p>
-        </div>
-
-        <div class="sign-card" data-sign="sagittarius">
-            <div class="card-header">
-                <span class="sign-name">Sagittarius (Dhanu)</span>
-                <span class="sign-element element-fire">Fire</span>
-            </div>
-            <div class="transit-focus">8th House: Metamorphosis & Shared Assets</div>
-            <p class="prediction-text">Your ruling planet deepens your connection to shared investments, inheritances, and passive income. It is an exceptional phase for clearing debts or securing venture backing. Intimate bonds achieve a rare level of transformative trust.</p>
-        </div>
-
-        <div class="sign-card" data-sign="capricorn">
-            <div class="card-header">
-                <span class="sign-name">Capricorn (Makar)</span>
-                <span class="sign-element element-earth">Earth</span>
-            </div>
-            <div class="transit-focus">7th House: Major Partnerships</div>
-            <p class="prediction-text">Commitment gets a beautiful upgrade. Business alliances and romantic partnerships thrive on mutual generosity. If you are single, an impactful, growth-oriented connection is likely to enter your sphere during this transit.</p>
-        </div>
-
-        <div class="sign-card" data-sign="aquarius">
-            <div class="card-header">
-                <span class="sign-name">Aquarius (Kumbha)</span>
-                <span class="sign-element element-air">Air</span>
-            </div>
-            <div class="transit-focus">6th House: Wellness & Daily Rituals</div>
-            <p class="prediction-text">Jupiter optimizes your daily routines and workplace environment. Expect a major turnaround in your vitality and health practices. Finding true fulfillment in your everyday tasks becomes effortless as work dynamics turn harmonious.</p>
-        </div>
-
-        <div class="sign-card" data-sign="pisces">
-            <div class="card-header">
-                <span class="sign-name">Pisces (Meen)</span>
-                <span class="sign-element element-water">Water</span>
-            </div>
-            <div class="transit-focus">5th House: Romance, Joy & Creativity</div>
-            <p class="prediction-text">As a fellow water sign, Jupiter sends waves of unbridled creative inspiration your way. Your artistic outputs flourish, speculative investments show promise, and your romantic landscape sparkles with playfulness and joy.</p>
-        </div>
+    <main class="predictions-container">
+        <div class="sign-card" data-sign="aries"><span class="sign-name">Aries (Mesh)</span><div class="transit-focus">4th House: Home</div><p class="prediction-text">Golden period for real estate and family healing[cite: 1].</p></div>
+        <div class="sign-card" data-sign="taurus"><span class="sign-name">Taurus (Vrishabha)</span><div class="transit-focus">3rd House: Skills</div><p class="prediction-text">Growth in communication and local networking[cite: 1].</p></div>
+        <div class="sign-card" data-sign="gemini"><span class="sign-name">Gemini (Mithun)</span><div class="transit-focus">2nd House: Wealth</div><p class="prediction-text">Increased earning potential and new revenue streams[cite: 1].</p></div>
+        <div class="sign-card" data-sign="cancer"><span class="sign-name">Cancer (Kark)</span><div class="transit-focus">1st House: Identity</div><p class="prediction-text">A 12-year peak for charisma, vitality, and personal success[cite: 1].</p></div>
+        <div class="sign-card" data-sign="leo"><span class="sign-name">Leo (Simha)</span><div class="transit-focus">12th House: Spirituality</div><p class="prediction-text">Deep psychological healing and spiritual growth[cite: 1].</p></div>
+        <div class="sign-card" data-sign="virgo"><span class="sign-name">Virgo (Kanya)</span><div class="transit-focus">11th House: Aspirations</div><p class="prediction-text">Social circles expand with high-status allies[cite: 1].</p></div>
+        <div class="sign-card" data-sign="libra"><span class="sign-name">Libra (Tula)</span><div class="transit-focus">10th House: Career</div><p class="prediction-text">Recognition and promotions in your professional life[cite: 1].</p></div>
+        <div class="sign-card" data-sign="scorpio"><span class="sign-name">Scorpio (Vrishchik)</span><div class="transit-focus">9th House: Wisdom</div><p class="prediction-text">Opportunities for travel and higher education[cite: 1].</p></div>
+        <div class="sign-card" data-sign="sagittarius"><span class="sign-name">Sagittarius (Dhanu)</span><div class="transit-focus">8th House: Assets</div><p class="prediction-text">Transformative trust and shared investment growth[cite: 1].</p></div>
+        <div class="sign-card" data-sign="capricorn"><span class="sign-name">Capricorn (Makar)</span><div class="transit-focus">7th House: Partnership</div><p class="prediction-text">Business alliances and romantic bonds thrive[cite: 1].</p></div>
+        <div class="sign-card" data-sign="aquarius"><span class="sign-name">Aquarius (Kumbha)</span><div class="transit-focus">6th House: Wellness</div><p class="prediction-text">Major turnaround in health and daily work routines[cite: 1].</p></div>
+        <div class="sign-card" data-sign="pisces"><span class="sign-name">Pisces (Meen)</span><div class="transit-focus">5th House: Joy</div><p class="prediction-text">Waves of creative inspiration and romantic sparkle[cite: 1].</p></div>
     </main>
 
     <script>
         function filterSigns() {
-            const select = document.getElementById('signFilter');
-            const filterValue = select.value;
-            const cards = document.querySelectorAll('.sign-card');
-
-            cards.forEach(card => {
-                const sign = card.getAttribute('data-sign');
-                
-                if (filterValue === 'all' || filterValue === sign) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
+            const filterValue = document.getElementById('signFilter').value;
+            document.querySelectorAll('.sign-card').forEach(card => {
+                card.classList.toggle('hidden', filterValue !== 'all' && card.getAttribute('data-sign') !== filterValue);
             });
         }
     </script>
