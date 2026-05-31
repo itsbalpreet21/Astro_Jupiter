@@ -320,4 +320,98 @@
                 <span class="sign-element element-water">Water</span>
             </div>
             <div class="transit-focus">1st House: Identity & New Beginnings</div>
-            <p class="prediction-text">The cosmic jackpot belongs to you. With Jupiter exalted in your 1st house
+            <p class="prediction-text">The cosmic jackpot belongs to you. With Jupiter exalted in your 1st house, your confidence, physical vitality, and personal charisma reach a 12-year peak. Trust your intuition; the world is ready to say 'yes' to your grandest ambitions.</p>
+        </div>
+
+        <div class="sign-card" data-sign="leo">
+            <div class="card-header">
+                <span class="sign-name">Leo (Simha)</span>
+                <span class="sign-element element-fire">Fire</span>
+            </div>
+            <div class="transit-focus">12th House: Spiritual Awakening</div>
+            <p class="prediction-text">Jupiter acts as a divine guardian angel in your subconscious realm. This transit accelerates deep psychological healing, vivid dream states, and spiritual growth. Solitude becomes a source of immense creative and intuitive power.</p>
+        </div>
+
+        <div class="sign-card" data-sign="virgo">
+            <div class="card-header">
+                <span class="sign-name">Virgo (Kanya)</span>
+                <span class="sign-element element-earth">Earth</span>
+            </div>
+            <div class="transit-focus">11th House: Networks & Aspirations</div>
+            <p class="prediction-text">Your social circle undergoes a magnificent expansion. High-status allies enter your life to aid your long-term visions. Collaborative projects, community building, and humanitarian goals yield exceptional rewards this year.</p>
+        </div>
+
+        <div class="sign-card" data-sign="libra">
+            <div class="card-header">
+                <span class="sign-name">Libra (Tula)</span>
+                <span class="sign-element element-air">Air</span>
+            </div>
+            <div class="transit-focus">10th House: Career & Public Status</div>
+            <p class="prediction-text">Prepare for professional elevation. Jupiter casts its benevolent gaze on your career house, bringing long-awaited recognition, promotions, or a successful shift in your life's true calling. Authority figures lean heavily in your favor.</p>
+        </div>
+
+        <div class="sign-card" data-sign="scorpio">
+            <div class="card-header">
+                <span class="sign-name">Scorpio (Vrishchik)</span>
+                <span class="sign-element element-water">Water</span>
+            </div>
+            <div class="transit-focus">9th House: Higher Wisdom & Travel</div>
+            <p class="prediction-text">Your horizons widen dramatically. Opportunities for long-distance international travel, higher education, or publishing emerge. Your philosophical perspective shifts toward profound optimism, inviting synchronicity into your life.</p>
+        </div>
+
+        <div class="sign-card" data-sign="sagittarius">
+            <div class="card-header">
+                <span class="sign-name">Sagittarius (Dhanu)</span>
+                <span class="sign-element element-fire">Fire</span>
+            </div>
+            <div class="transit-focus">8th House: Metamorphosis & Shared Assets</div>
+            <p class="prediction-text">Your ruling planet deepens your connection to shared investments, inheritances, and passive income. It is an exceptional phase for clearing debts or securing venture backing. Intimate bonds achieve a rare level of transformative trust.</p>
+        </div>
+
+        <div class="sign-card" data-sign="capricorn">
+            <div class="card-header">
+                <span class="sign-name">Capricorn (Makar)</span>
+                <span class="sign-element element-earth">Earth</span>
+            </div>
+            <div class="transit-focus">7th House: Major Partnerships</div>
+            <p class="prediction-text">Commitment gets a beautiful upgrade. Business alliances and romantic partnerships thrive on mutual generosity. If you are single, an impactful, growth-oriented connection is likely to enter your sphere during this transit.</p>
+        </div>
+
+        <div class="sign-card" data-sign="aquarius">
+            <div class="card-header">
+                <span class="sign-name">Aquarius (Kumbha)</span>
+                <span class="sign-element element-air">Air</span>
+            </div>
+            <div class="transit-focus">6th House: Wellness & Daily Rituals</div>
+            <p class="prediction-text">Jupiter optimizes your daily routines and workplace environment. Expect a major turnaround in your vitality and health practices. Finding true fulfillment in your everyday tasks becomes effortless as work dynamics turn harmonious.</p>
+        </div>
+
+        <div class="sign-card" data-sign="pisces">
+            <div class="card-header">
+                <span class="sign-name">Pisces (Meen)</span>
+                <span class="sign-element element-water">Water</span>
+            </div>
+            <div class="transit-focus">5th House: Romance, Joy & Creativity</div>
+            <p class="prediction-text">As a fellow water sign, Jupiter sends waves of unbridled creative inspiration your way. Your artistic outputs flourish, speculative investments show promise, and your romantic landscape sparkles with playfulness and joy.</p>
+        </div>
+    </main>
+
+    <script>
+        function filterSigns() {
+            const select = document.getElementById('signFilter');
+            const filterValue = select.value;
+            const cards = document.querySelectorAll('.sign-card');
+
+            cards.forEach(card => {
+                const sign = card.getAttribute('data-sign');
+                
+                if (filterValue === 'all' || filterValue === sign) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
